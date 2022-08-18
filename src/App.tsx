@@ -5,13 +5,13 @@ import Sidenav from './component/sidenav/sidenav';
 
 
 function App() {
-  const data = [{title: "red dress", description: "testtt", prize :"$300" , size:" X,L,XL,M" ,showDelete: false},{
+  const data = [{title: "red dress", description: "testtt", prize :"$300" , size:" X,L,XL,M" ,showDelete: true},{
     title: "white dress", description: "testtt1",prize :"$500",size:" X,L,XL,M", showDelete: true},
     {title: "white dress", description: "testtt3",prize :"$800" , size:" X,L,XL,M" ,showDelete: false},
-    {title: "white dress", description: "testtt2",prize :"$900",size:" X,L,XL,M", showDelete: false}
+    {title: "white dress", description: "testtt2",prize :"$900",size:" X,L,XL,M", showDelete: true}
     ]
   return (
-  <div>  
+  
     <>
    <Sidenav />
 
@@ -25,7 +25,7 @@ function App() {
 })
    }
    </>
-   </div>
+   
       
   );
 }
