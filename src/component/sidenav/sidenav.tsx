@@ -18,7 +18,7 @@ function sidenavbar() {
              <li><a href="Kids">Kids</a></li>
            </ul>
          </li>
-         <li><a href="Pricing">Pricing</a></li>
+         <li><a href="Pricing">Cart</a></li>
          <li><a href="Contact">Contact</a></li>
        </div>
      </ul>
