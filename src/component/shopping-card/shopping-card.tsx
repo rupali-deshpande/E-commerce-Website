@@ -1,55 +1,34 @@
-import React from "react";
+import React , {useState} from "react";
 import dress from '../women-dress.jpg'
 import './shoppingcard.css'
+import { AiFillDelete } from 'react-icons/ai';
+import {MdAddShoppingCart} from 'react-icons/md'
 
-function ShoppingCard() {
+
+
+
+ function ShoppingCard(props:any) {
+ 
     return(
         <div>
-            <div className="row">
+          
   <div className="column">
     <div className="card">
     <img  className='cat' src={dress} alt="Avatar"/ >
-      <h3>Selvia </h3>
-      <p>Sleeves  Women Black Dress</p>
-      <p><b>$300</b></p>
-      <p>Size: X,L,XL,M</p>
-      
-      
+      <h3>{props.title} </h3>
+      <p>{props.description}</p>
+      <p><b>{props.prize}</b></p>
+      <p>Size: {props.size}</p>
+      <button className="button" > <MdAddShoppingCart size="2em" /></button>
+      { props.showDelete? <button className="button2" ><AiFillDelete size="2em" /></button>:""}
     </div>
   </div>
 
-  <div className="column">
-    <div className="card">
-    <img  className='cat' src={dress} alt="Avatar"/ >
-    <h3>Selvia </h3>
-      <p>Sleeves  Women Black Dress</p>
-      <p><b>$300</b></p>
-      <p>Size: X,L,XL,M</p>
-    </div>
-  </div>
   
-  <div className="column">
-    <div className="card">
-    <img  className='cat' src={dress} alt="Avatar"/ >
-    <h3>Selvia </h3>
-      <p>Sleeves  Women Black Dress</p>
-      <p><b>$300</b></p>
-      <p>Size: X,L,XL,M</p>
-    </div>
-  </div>
-  
-  <div className="column">
-    <div className="card">
-    <img  className='cat' src={dress} alt="Avatar"/ >
-    <h3>Selvia </h3>
-      <p>Sleeves  Women Black Dress</p>
-      <p><b>$300</b></p>
-      <p>Size: X,L,XL,M</p>
-    </div>
-  </div>
 </div>
-        </div>
+        
 
     )
 }
-export default ShoppingCard
+
+export default ShoppingCard;
