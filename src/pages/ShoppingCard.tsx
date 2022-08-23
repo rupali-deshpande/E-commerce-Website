@@ -5,20 +5,28 @@ import { ShoppingCardItem } from '../component/shopping-card/shoppingCardItem'
 import { useState } from 'react'
 
 export function ShoppingCard () {
-    
+    const [data , setdata]= useState(ItemDetails)
+    const deleteTheCard = (id:any) => {
+        console.log(id)
+            // //unique ID
+            const filterdata = data.filter((item)=>item.id!== id)
+            setdata(filterdata)
+            console.log(filterdata)
+          }
+          console.log(JSON.parse( localStorage.getItem('item')|| "{}"))
     return(     
 <>
-{ItemDetails.map(item =>(
+{data.map(item =>(
     <div className="column" key={item.id}>
         <div  >
-      <ShoppingCardItem   {...item}/><div/>
+      <ShoppingCardItem   {...item} deleteitem={(id:any)=>deleteTheCard(item.id)}/><div/>
       </div>
     </div>
 ))}
 </>
     )
     
-}
+} 
 
 // {showDelete ? <AiFillDelete  className="icon" size="2em" /> : ""}
 //       <div className="card"   >
