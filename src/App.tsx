@@ -7,14 +7,16 @@ import {Routes , Route} from 'react-router-dom'
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { ShoppingCard } from './pages/ShoppingCard';
+import { Cartitem } from './component/Cart';
 function App() {
   return (
     <>
     <Navbar />
       <Routes>
         <Route  path="/" element={< ShoppingCard/>}/>
-        <Route path="/" element={<About/>} />
-        <Route path="/" element={<Home/>}/>
+        <Route path="about" element={<About/>} />
+        <Route path="home" element={<Home/>}/>
+        <Route path="Cart" element={< Cartitem/>} />
       </Routes>
    </>
 

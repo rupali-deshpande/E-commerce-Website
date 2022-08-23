@@ -19,7 +19,7 @@ function Navbar() {
               <li><a href="Kids">Kids</a></li>
             </ul>
           </li>
-          <li><a href="Cart">Cart</a></li>
+          <li><Link to="Cart">Cart</Link></li>
           <li><a href="Contact">Contact</a></li>
         </div>
       </ul>

@@ -7,13 +7,12 @@ import { useState } from 'react'
 export function ShoppingCard () {
     const [data , setdata]= useState(ItemDetails)
     const deleteTheCard = (id:any) => {
-        console.log(id)
+        //console.log(id)
             // //unique ID
             const filterdata = data.filter((item)=>item.id!== id)
             setdata(filterdata)
-            console.log(filterdata)
+            //console.log(filterdata)
           }
-          console.log(JSON.parse( localStorage.getItem('item')|| "{}"))
     return(     
 <>
 {data.map(item =>(
