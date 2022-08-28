@@ -53,6 +53,10 @@
     cursor: pointer;
     
    }
+   .addToCart{
+    position: absolute;
+    right: 20px;
+   }
    .icon{
     position: relative;
     top: 20px;

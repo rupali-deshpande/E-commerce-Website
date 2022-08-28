@@ -20,10 +20,10 @@ function Navbar() {
             </ul>
           </li>
           <li><Link to="Cart">Cart</Link></li>
-          <li><a href="Contact">Contact</a></li>
+          <li><Link to="Form">Form</Link></li>
         </div>
       </ul>
-      <button className="button"
+      {/* <button className="button"
           
            
           >
@@ -49,7 +49,7 @@ function Navbar() {
             >
               3
             </div>
-          </button>
+          </button> */}
     </nav>
 
   );

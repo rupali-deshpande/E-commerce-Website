@@ -7,7 +7,10 @@ import {Routes , Route} from 'react-router-dom'
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { ShoppingCard } from './pages/ShoppingCard';
-import { Cartitem } from './component/Cart';
+import { CartItem } from './component/Cart';
+import { Form } from './component/Form/Forms';
+
+
 function App() {
   return (
     <>
@@ -16,7 +19,8 @@ function App() {
         <Route  path="/" element={< ShoppingCard/>}/>
         <Route path="about" element={<About/>} />
         <Route path="home" element={<Home/>}/>
-        <Route path="Cart" element={< Cartitem/>} />
+        <Route path="Cart" element={< CartItem/>} />
+        <Route path="Form" element={<Form/>}>  </Route>
       </Routes>
    </>
 
@@ -26,28 +30,3 @@ function App() {
 
 
 export default App;
-{/* <>
-      <Sidenav />
-      {/* no need */}
-      // {data.map((item) => {
-      //   return (
-      //     <ShoppingCard key={item.id}
-      //      title={item.title}
-      //       description={item.description}
-      //       showDelete={item.showDelete}
-      //       size={item.size}
-      //       prize={item.prize}
-      //       obj={item}
-      //       setData={setData}
-      //       data={data}
-      //     />)
-      // })
-      // }
-
-    // </> */}
-
-    // const [data, setData] = useState([{ title: "red dress", description: "testtt", prize: "$300", size: " X,L,XL,M", showDelete: true }, {
-    //   title: "white dress", description: "testtt1", prize: "$500", size: " X,L,XL,M", showDelete: true
-    // },
-    // { title: "dress", description: "testtt3", prize: "$800", size: " X,L,XL,M", showDelete: false },
-    // { title: "blue dress", description: "testtt2", prize: "$900", size: " X,L,XL,M", showDelete: true }])
