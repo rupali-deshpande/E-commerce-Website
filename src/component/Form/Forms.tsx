@@ -1,39 +1,51 @@
 
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+
 import '../Form/Form.css'
 
-export function Form(props: any) {
+interface dataProps {
+    //id: string,
+    title: string,
+    desciption: string,
+    price: number,
+
+}
+
+export function Form() {
 
     const [enterTitle, setTitle] = useState('')
-    const [enterdescription, setDescription] = useState('')
-    const [enterprize, setprize] = useState('')
+    const [enterDescription, setDescription] = useState('')
+    const [enterPrize, setprize] = useState(0)
+    const [formData, setFormData] = useState<dataProps[]>([])
+    const titlehandlerClick = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-    const titlehandlerClick = (event:any) => {
-        console.log(event.target.value)
+        setTitle(event.target.value)
     }
-    const descriptionhandlerclick = (event:any) => {
-       // setDescription(event.target.value)
-       console.log('title added')
+    const fileSelectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target)
+
+    }
+    const descriptionhandlerclick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDescription(event.target.value)
+
     }
 
-    const pricehandlerclick = (event:any) => {
-        //setprize(event.target.value)
-        console.log('title added')
+    const pricehandlerclick = (event: React.ChangeEvent<HTMLInputElement>) => {
+       // setprize(event.target.value)
+
     }
 
-    const onSubmit = (event: any) => {
+    const onSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        const filledData = {
+        const filledData: dataProps = {
             title: enterTitle,
-            desciption: enterdescription,
-            price: enterprize
+            desciption: enterDescription,
+            price: enterPrize
 
         }
-        // setTitle('')
-        // setDescription('')
-        // setprize('')
-       // console.log(filledData)
+        console.log(enterTitle, enterDescription, enterPrize)
+        localStorage.setItem("Form", JSON.stringify({ title: enterTitle, desc: enterDescription, price: enterPrize }))
+        setFormData((prevValue) => [...prevValue, filledData])
     }
 
     return (
@@ -42,8 +54,8 @@ export function Form(props: any) {
                 <div>
                     <div>
                         <label>Title </label>
-                        <input  value={enterTitle}
-                        onChange={titlehandlerClick} type='text' />
+                        <input value={enterTitle}
+                            onChange={titlehandlerClick} type='text' />
                     </div>
                     <div>
                         <label>Description </label>
@@ -52,6 +64,10 @@ export function Form(props: any) {
                     <div>
                         <label>prize </label>
                         <input onChange={pricehandlerclick} type='number' min="0.01" step="0.01" />
+                    </div>
+                    <div>
+                        <label>Image </label>
+                        <input type="file" onChange={fileSelectHandler} />
                     </div>
                 </div>
                 <div>

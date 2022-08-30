@@ -1,31 +1,32 @@
+import React from "react"
 import { useEffect, useState } from "react"
-import dress from '../../src/women-dress.jpg'
-import '../component/shopping-card/shoppingcard.css'
+import '../shopping-card/shoppingcard.css'
 
 
 type ShoppingCardItemProps = {
-    id: string,
-    title: string,
-    desciption: string,
-    price: number,
-    size: string,
-    ShowDelete: boolean
+  id: string,
+  title: string,
+  desciption: string,
+  price: number,
+  size: string,
+  imgUrl:string,
+  ShowDelete: boolean
 }
 export function CartItem() {
     const [cartData, setData] = useState<ShoppingCardItemProps[]>([]);
     useEffect(() => {
         //(JSON.parse( localStorage.getItem('item')|| "{}")) 
-        if (localStorage.getItem('item'))
-            setData(oldcartdata => [...oldcartdata, ...JSON.parse(localStorage.getItem('item') || '{}')])
+        if (localStorage.getItem('cartData'))
+            setData(oldcartdata => [...oldcartdata, ...JSON.parse(localStorage.getItem('cartData') || '{}')])
     }, []);
-    console.log( JSON.parse(localStorage.getItem('item') || '{}'))
+    console.log( JSON.parse(localStorage.getItem('cartData') || '{}'))
     console.log(cartData)
     return (
         <>
             {cartData.length > 0 ?
                 cartData.map((item => {
                     return <div className="card" key={item.id} >
-                        <img className='cat' src={dress} alt="Avatar" />
+                        <img className='cat' src={item.imgUrl} alt="Avatar" />
                         <h3>{item.title} </h3>
                         <p>{item.desciption}</p>
                         <p><b>{item.price}</b></p>

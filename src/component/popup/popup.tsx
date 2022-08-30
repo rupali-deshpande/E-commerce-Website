@@ -9,7 +9,7 @@ function PopUp({title , description , prize , size , showDelete , obj , setData 
 
     return (
     <>
-        <Popup trigger={<ShoppingCard />}position="right center">
+        <Popup position="right center">
     <div className="card"   >
         <p>hsj</p>
     </div>
