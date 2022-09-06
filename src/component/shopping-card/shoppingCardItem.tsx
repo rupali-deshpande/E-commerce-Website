@@ -12,38 +12,57 @@ type ShoppingCardItemProps = {
   price: number,
   size: string,
   imgUrl: string,
-  ShowDelete: boolean
-
+  ShowDelete: boolean,
+  AddtoCart: boolean,
 }
-
-
 export function ShoppingCardItem(props: any) {
   // console.log(props.deleteitem) 
-  const { id, title, desciption, price, size, ShowDelete, imgUrl }: ShoppingCardItemProps = props
-  const changeTextForCart =() => {
+  const { items, addtoCart, deleteTheCard } = props
+  const changeTextForCart = () => {
     setWishlisted(true);
   }
-  const changeTextForAddCart = () => {
-    props.addtoCart()
-    setIsAddedToCart(true)
+  const changeTextForAddCart = (event: any) => {
+    event.preventDefault()
+    setIsAddedToCart(event.target.value);
+    addtoCart(event.target.value);
+    addtocarttrue(event.target.value)
+    console.log(event.target.value)
   }
-  const [isWishlisted ,setWishlisted] = useState<boolean>(false)
-  const [isAddedToCart , setIsAddedToCart] =useState<boolean>(false)
+  const addtocarttrue = (id: string) => {
+
+    const filterData = items.filter((item: { id: string; AddtoCart: boolean }) => {
+      if (item.id === id) {
+        item.AddtoCart = true
+      }
+    })
 
 
+  }
+  const [isWishlisted, setWishlisted] = useState<boolean>(false)
+  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+
+  const deleteitem = {
+
+  }
 
   return (
     <>
-      {ShowDelete ? <AiFillDelete onClick={props.deleteitem} className="icon" size="2em" /> : ""}
-      <div className="card" key={id}  >
-        <img className='cat' src={imgUrl} alt="Avatar" />
-        <h3>{title} </h3>
-        <p>{desciption}</p>
-        <p><b>{price}</b></p>
-        <p>Size: {size}</p>
-        <button className="button3" onClick={changeTextForCart}>{isWishlisted ? 'Added to Wishlist': 'Add to Wishlist'} </button>
-        <button className="button3" onClick={changeTextForAddCart}>{isAddedToCart ? 'Added to Cart' : 'Add to Cart'}</button>
-      </div>
+      {items.map((item: ShoppingCardItemProps) => (
+        <div className='column'>
+          {item.ShowDelete ? <AiFillDelete values={item.id} className="icon" size="2em" /> : ""}
+
+          <div className="card" key={item.id}  >
+            <img className='cat' src={item.imgUrl} alt="Avatar" />
+            <h3>{item.title} </h3>
+            <p>{item.desciption}</p>
+            <p><b>{item.price}</b></p>
+            <p>Size: {item.size}</p>
+            {/* //conditional rendering */}
+            <button className="button3" onClick={changeTextForCart}>{isWishlisted ? 'Added to Wishlist' : 'Add to Wishlist'} </button>
+            <button className="button3" value={item.id} name={item.id} onClick={changeTextForAddCart}>{item.AddtoCart ? 'Added to Cart' : 'Add to Cart'}</button>
+          </div>
+        </div>
+      ))}
 
     </>
   )

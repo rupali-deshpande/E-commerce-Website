@@ -1,10 +1,9 @@
 
-import React, { useState } from "react";
-
+import React, { useState  } from "react";
+import useInput from "@rooks/use-input";
 import '../Form/Form.css'
 
 interface dataProps {
-    //id: string,
     title: string,
     desciption: string,
     price: number,
@@ -15,7 +14,7 @@ export function Form() {
 
     const [enterTitle, setTitle] = useState('')
     const [enterDescription, setDescription] = useState('')
-    const [enterPrize, setprize] = useState(0)
+    const [enterPrize, setprize] = useState(Number)
     const [formData, setFormData] = useState<dataProps[]>([])
     const titlehandlerClick = (event: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -31,7 +30,8 @@ export function Form() {
     }
 
     const pricehandlerclick = (event: React.ChangeEvent<HTMLInputElement>) => {
-       // setprize(event.target.value)
+        
+        setprize(event.target.valueAsNumber)
 
     }
 
@@ -45,7 +45,10 @@ export function Form() {
         }
         console.log(enterTitle, enterDescription, enterPrize)
         localStorage.setItem("Form", JSON.stringify({ title: enterTitle, desc: enterDescription, price: enterPrize }))
-        setFormData((prevValue) => [...prevValue, filledData])
+        setFormData((prevValue) => [...prevValue, filledData]);
+        //setTitle('');
+        //setDescription('');
+        //setprize(0);
     }
 
     return (
@@ -59,11 +62,11 @@ export function Form() {
                     </div>
                     <div>
                         <label>Description </label>
-                        <input onChange={descriptionhandlerclick} type='text' />
+                        <input  value={enterDescription}onChange={descriptionhandlerclick} type='text' />
                     </div>
                     <div>
                         <label>prize </label>
-                        <input onChange={pricehandlerclick} type='number' min="0.01" step="0.01" />
+                        <input value={enterPrize} onChange={pricehandlerclick} type='number' min="0.01" step="0.01" />
                     </div>
                     <div>
                         <label>Image </label>
@@ -71,7 +74,7 @@ export function Form() {
                     </div>
                 </div>
                 <div>
-                    <button type="submit" >Submit</button>
+                    <button type="submit" value="Submit">Submit</button>
                 </div>
             </form>
 
