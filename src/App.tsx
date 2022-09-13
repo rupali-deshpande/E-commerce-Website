@@ -3,7 +3,6 @@ import Navbar from './component/Navbar/Navbar';
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { About } from './pages/About';
-import { ShoppingCard } from './pages/ShoppingCard';
 import { CartItem } from './component/Cart/Cart';
 import { Form } from './component/Form/Forms';
 import { useEffect, useState } from 'react';
@@ -18,7 +17,8 @@ type ShoppingCardItemProps = {
   size: string,
   imgUrl: string,
   AddtoCart?: boolean,
-  ShowDelete: boolean
+  ShowDelete: boolean,
+  AddedTowishlist?:boolean
 }
 
 function App() {
@@ -85,6 +85,15 @@ function App() {
     //setItem(oldcartdata => console.log(oldcartdata))
     console.log(dataItem)
   }
+  const addtoWishlist = (id: string) => {
+
+    const filterData = data.filter((item) => item.id === id)
+    console.log(filterData)
+    dataItem.push(...filterData)
+
+    //setItem(oldcartdata => console.log(oldcartdata))
+    console.log(dataItem)
+  }
   console.log(data)
   return (
     <>
@@ -93,7 +102,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ShoppingCardItem addtoCart={addtoCart}
           deleteTheCard={deleteTheCard}
-          items={data} setCartData={setCartData} />} />
+          items={data} setCartData={setCartData} addtoWishlist={addtoWishlist} />} />
 
         <Route path="about" element={<About />} />
         <Route path="home" element={<Home />} />

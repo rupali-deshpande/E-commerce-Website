@@ -1,5 +1,5 @@
 
-import React, { useState  } from "react";
+import React, { useRef, useState  } from "react";
 import useInput from "@rooks/use-input";
 import '../Form/Form.css'
 
@@ -11,12 +11,15 @@ interface dataProps {
 }
 
 export function Form() {
-
+    const titleRef = useRef<HTMLInputElement>(null);
+    
+    const descriptionRef=useRef();
     const [enterTitle, setTitle] = useState('')
     const [enterDescription, setDescription] = useState('')
     const [enterPrize, setprize] = useState(Number)
     const [formData, setFormData] = useState<dataProps[]>([])
-    const titlehandlerClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    
+    const titlehandlerClick = (event: React.ChangeEvent<HTMLInputElement |HTMLSelectElement>) => {
 
         setTitle(event.target.value)
     }
@@ -37,6 +40,12 @@ export function Form() {
 
     const onSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
+        if (titleRef.current != null) {
+            // TypeScript knows that ref is not null here
+            console.log("UseRef" + titleRef.current.value);
+          }
+       // console.log(titleRef.current.value);
+
         const filledData: dataProps = {
             title: enterTitle,
             desciption: enterDescription,
@@ -58,7 +67,7 @@ export function Form() {
                     <div>
                         <label>Title </label>
                         <input value={enterTitle}
-                            onChange={titlehandlerClick} type='text' />
+                            onChange={titlehandlerClick} type='text' ref={titleRef}/>
                     </div>
                     <div>
                         <label>Description </label>
