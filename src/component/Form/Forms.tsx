@@ -12,8 +12,8 @@ interface dataProps {
 
 export function Form() {
     const titleRef = useRef<HTMLInputElement>(null);
-    
-    const descriptionRef=useRef();
+    const descriptionRef = useRef<HTMLInputElement>(null);
+    const prizeRef=useRef<HTMLInputElement>(null);
     const [enterTitle, setTitle] = useState('')
     const [enterDescription, setDescription] = useState('')
     const [enterPrize, setprize] = useState(Number)
@@ -40,10 +40,20 @@ export function Form() {
 
     const onSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
+        
         if (titleRef.current != null) {
+            const refObje= {
+                title:titleRef.current.value,
+                description:descriptionRef.current?.value,
+                prize:prizeRef.current?.value
+            }
             // TypeScript knows that ref is not null here
-            console.log("UseRef" + titleRef.current.value);
+            console.log(refObje);
+            localStorage.setItem("Form", JSON.stringify( refObje ))
+
           }
+         
+          
        // console.log(titleRef.current.value);
 
         const filledData: dataProps = {
@@ -53,11 +63,11 @@ export function Form() {
 
         }
         console.log(enterTitle, enterDescription, enterPrize)
-        localStorage.setItem("Form", JSON.stringify({ title: enterTitle, desc: enterDescription, price: enterPrize }))
         setFormData((prevValue) => [...prevValue, filledData]);
         //setTitle('');
         //setDescription('');
         //setprize(0);
+        
     }
 
     return (
@@ -71,11 +81,11 @@ export function Form() {
                     </div>
                     <div>
                         <label>Description </label>
-                        <input  value={enterDescription}onChange={descriptionhandlerclick} type='text' />
+                        <input  value={enterDescription}onChange={descriptionhandlerclick} type='text'  ref={descriptionRef} />
                     </div>
                     <div>
                         <label>prize </label>
-                        <input value={enterPrize} onChange={pricehandlerclick} type='number' min="0.01" step="0.01" />
+                        <input value={enterPrize} ref={prizeRef} onChange={pricehandlerclick} type='number' min="0.01" step="0.01" />
                     </div>
                     <div>
                         <label>Image </label>
