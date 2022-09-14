@@ -38,10 +38,11 @@ export function Form() {
 
     }
 
-    const onSubmit = (event: React.SyntheticEvent) => {
+    const onchange = (event: React.SyntheticEvent) => {
         event.preventDefault();
         
-        if (titleRef.current != null) {
+        if (titleRef.current != null && descriptionRef.current!=null && prizeRef.current!=null) {
+            
             const refObje= {
                 title:titleRef.current.value,
                 description:descriptionRef.current?.value,
@@ -49,10 +50,15 @@ export function Form() {
             }
             // TypeScript knows that ref is not null here
             console.log(refObje);
-            localStorage.setItem("Form", JSON.stringify( refObje ))
-
+            localStorage.setItem("Form", JSON.stringify( refObje ));
+            titleRef.current.value="";
+            descriptionRef.current.value=""
+            prizeRef.current.value=""
+            //descriptionRef.current.value="";
+            return;
+            
           }
-         
+          
           
        // console.log(titleRef.current.value);
 
@@ -68,11 +74,13 @@ export function Form() {
         //setDescription('');
         //setprize(0);
         
+       
     }
+    
 
     return (
         <>
-            <form onClick={onSubmit} className="form">
+            <form onSubmit={onchange} className="form">
                 <div>
                     <div>
                         <label>Title </label>
@@ -93,7 +101,7 @@ export function Form() {
                     </div>
                 </div>
                 <div>
-                    <button type="submit" value="Submit">Submit</button>
+                    <button type="submit" value="Submit" >Submit</button>
                 </div>
             </form>
 
